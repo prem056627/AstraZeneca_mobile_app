@@ -16,8 +16,12 @@ export const ProgramEnrollmentSlice = createSlice({
     },
     // current_page_state: 'enrollment_not_complete',
     current_page_state: "",
-    // program_status: 'un_active', // program status
-    // program_status: "active", // program status
+    sub_form_current_step:1,
+    profile_details_completed: [],
+    caregiver_details_completed: [],  
+    upload_doc_completed: [],
+    authorize_concent: [],  
+  
     program_name :'Opdyta',
     program_status: 'active', // program status
     // program_status: 'profile_under_review', // program status
@@ -32,7 +36,7 @@ export const ProgramEnrollmentSlice = createSlice({
     program_enrollment_success: false,
     patient_enrollemnt_success: false,
     current_view: "home",
-    // currentStep: 'caregiver_addition',
+    // currentStep: 'caregiver_details',
 
     /////////// upload_file render flags
     doc_upload_status: "",
@@ -79,6 +83,59 @@ export const ProgramEnrollmentSlice = createSlice({
     },
     setCurrentPageState: (state, action) => {
       state.current_page_state = action.payload;
+    },
+    setSubFormCurrentStep: (state, action) => {
+      state.sub_form_current_step = action.payload;
+    },
+
+    resetSubFormCurrentStep: (state) => {
+      state.sub_form_current_step = 1;
+    },
+
+    
+
+
+     // New separate reducers for each section
+     setProfileDetailCompleted: (state, action) => {
+      const stepValue = action.payload;
+      
+      // Only add if not already included
+      if (!state.profile_details_completed.includes(stepValue)) {
+        state.profile_details_completed.push(stepValue);
+      }
+    },
+    
+    setCaregiverDetailCompleted: (state, action) => {
+      const stepValue = action.payload;
+      
+      // Only add if not already included
+      if (!state.caregiver_details_completed.includes(stepValue)) {
+        state.caregiver_details_completed.push(stepValue);
+      }
+    },
+    
+
+    setUploadDocCompleted: (state, action) => {
+      const stepValue = action.payload;
+      
+      // Only add if not already included
+      if (!state.upload_doc_completed.includes(stepValue)) {
+        state.upload_doc_completed.push(stepValue);
+      }
+    },
+
+   setAuthorizeConcentCompleted: (state, action) => {
+      const stepValue = action.payload;
+      
+      // Only add if not already included
+      if (!state.authorize_concent.includes(stepValue)) {
+        state.authorize_concent.push(stepValue);
+      }
+    },
+  
+    
+    resetCompletedSections: (state) => {
+      state.completedSections = [];
     },
     setProgramEnrollmentConsent: (state, action) => {
       state.program_enroll_consent = action.payload;
@@ -176,6 +233,7 @@ setIsProgramEnrollDocDuplicateFound: (state, action) => {
 export const {
   changeStep,
   setPatientDetails,
+  resetSubFormCurrentStep,
   setInitializeData,
   setCurrentPageState,
   setProgramEnrollmentConsent,
@@ -203,7 +261,15 @@ export const {
   setIsSampleAadharOpenActive,
   setIsProgramEnrollDocDuplicateFound,
   setCaregiver_enroll_consent,
-  setCaregiver_enroll_consent_privacy
+  setSubFormCurrentStep,
+  resetCompletedSections,
+  setSubFormCurrentStep_2,
+  setCaregiver_enroll_consent_privacy,
+  // New exports for the separate arrays
+  setProfileDetailCompleted,
+  setCaregiverDetailCompleted,
+  setAuthorizeConcentCompleted,
+  setUploadDocCompleted
 } = ProgramEnrollmentSlice.actions;
 
 export const selectCurrentStep = (state) => state.patientDetailForm.currentStep;
@@ -215,6 +281,9 @@ export const selectInitializeData = (state) =>
 
 export const selectCurrentPageState = (state) =>
   state.patientDetailForm.current_page_state;
+
+export const selectSubFormCurrentStep = (state) =>
+  state.patientDetailForm.sub_form_current_step;
 
 export const selectProgramEnrollmentConsent = (state) =>
   state.patientDetailForm.program_enroll_consent;
@@ -290,6 +359,14 @@ export const selectIsSampleAadharOpenActive = (state) =>
 
 export const selectIsProgramEnrollDocDuplicateFound = (state) =>
   state.patientDetailForm.isProgramEnrollDocDuplicateFound;
+
+// New selectors for separate arrays
+export const selectProfileDetailsCompleted = (state) => state.patientDetailForm.profile_details_completed || [];
+export const selectCaregiverDetailsCompleted = (state) => state.patientDetailForm.caregiver_details_completed || [];
+export const selectUploadDocCompleted = (state) => state.patientDetailForm.upload_doc_completed || [];
+export const selectAuthorizeConcentCompleted = (state) => state.patientDetailForm.authorize_concent || [];
+
+
 
 
 export default ProgramEnrollmentSlice.reducer;

@@ -6,11 +6,19 @@ import Doc_2  from "../../src/assets/images/ProgramCards/2.pdf";
 
 
 let initialData = {
- 
+  // case "personal_details":
+  //   return <Step1 />;
+  // case "caregiver_details":
+  //   return <Step2 />;
+  //   case "upload_documents":
+  //     return <Step3 />;
+  //     case "authorization":
+
     // before enrollment submit
-    // patient_enrolment
-    // current_step: "caregiver_addition",
-    current_step: "program_enrolment_done",
+    // personal_details
+    // program_enrolment_done
+    // current_step: "caregiver_details",
+    current_step: "program_enrolment",
     // patient_status: "Inactive",
     patient_status: "Active",
     duplicate: false,
@@ -2336,7 +2344,7 @@ let initialData = {
             { id: 'rroof', label: 'Addrer' },
             
           ],
-          program_status: "ative",
+          program_status: "active",
           // shortfall
           // suspended
           // rejected
@@ -2350,7 +2358,7 @@ let initialData = {
                   {
                       order_id: "10001",
                       pending_status:"1234",
-                      order_status: "Cancelled",
+                      order_status: "Dispatched",
                       scn_executor: "MDB Chennai",
                       order_date: "24 Dec 2024",
                       status_date: "27 Dec 2024",
@@ -2359,7 +2367,7 @@ let initialData = {
                   },
                   {
                       order_id: "10002",
-                      order_status: "Open",
+                      order_status: "Dispatched",
                       scn_executor: "MDB Chennai",
                       order_date: "24 Dec 2024",
                       status_date: "27 Dec 2024",
@@ -2370,23 +2378,41 @@ let initialData = {
               foc_orders: [
                   {
                       order_id: "10003",
-                      order_status: "Open",
+                      order_status: "Dispatched",
                       scn_executor: "MDB Chennai",
                       order_date: "24 Dec 2024",
-                      status_date: "27 Dec 2024",
+                      status_date: "dispatched",
                       order_scheme:"9LD",
                       onemg_status:"updated",
                       order_file: ["invoice-10001-1.pdf", "invoice-10001-2.pdf", "receipt-10001.pdf"],
                   },
                   {
                       order_id: "10002",
-                      order_status: "Approve",
+                      order_status: "Verified",
                       scn_executor: "MDB Chennai",
                       order_date: "24 Dec 2024",
                       status_date: "27 Dec 2024",
                       order_scheme:"9LD",
                       order_file: ["invoice-10001-1.pdf", "invoice-10001-2.pdf", "receipt-10001.pdf"],
-                  }
+                  },
+                  {
+                    order_id: "13002",
+                    order_status: "Verified",
+                    scn_executor: "MDB Chennai",
+                    order_date: "24 Dec 2024",
+                    status_date: "27 Dec 2024",
+                    order_scheme:"9LD",
+                    order_file: ["invoice-10001-1.pdf", "invoice-10001-2.pdf", "receipt-10001.pdf"],
+                },
+                {
+                  order_id: "10002",
+                  order_status: "Verified",
+                  scn_executor: "MDB Chennai",
+                  order_date: "24 Dec 2024",
+                  status_date: "27 Dec 2024",
+                  order_scheme:"9LD",
+                  order_file: ["invoice-10001-1.pdf", "invoice-10001-2.pdf", "receipt-10001.pdf"],
+              }
               ]
           }
       }
@@ -2764,24 +2790,43 @@ export const handlers = [
         
         // console.log(`Mock OTP sent: ${otp} to ${mobile_no || requestBody.mobile_no}`);
       } 
-      else if (currentStep === "patient_enrolment") {
+      // case "personal_details":
+      //   return 1;
+      // case "caregiver_details":
+      //   return 2;
+      // case "upload_documents":
+      //   return 3;
+      // case "authorization":
+      else if (currentStep === "personal_details") {
         responseData = {
-          current_step: "caregiver_addition",
+          current_step: "caregiver_details",
           patient_data: requestBody
         };
       } 
-      else if (currentStep === "caregiver_addition") {
+      else if (currentStep === "caregiver_details") {
         responseData = {
-          current_step: "program_enrolment",
+          current_step: "upload_documents",
           patient_data: requestBody
         };
       }
-      else if (currentStep === "program_enrolment") {
+      else if (currentStep === "upload_documents") {
         responseData = {
-          current_step: "program_enrolment_done",
+          current_step: "authorization",
           patient_data: requestBody
         };
       }
+      // else if (currentStep === "caregiver_details") {
+      //   responseData = {
+      //     current_step: "program_enrolment",
+      //     patient_data: requestBody
+      //   };
+      // }
+      // else if (currentStep === "program_enrolment") {
+      //   responseData = {
+      //     current_step: "program_enrolment_done",
+      //     patient_data: requestBody
+      //   };
+      // }
       // Handle OTP verification step
       else if (currentStep === "verify_otp") {
         // In a real app, you would verify the OTP

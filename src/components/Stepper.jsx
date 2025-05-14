@@ -10,11 +10,18 @@ const Stepper = ({ steps }) => {
 
   // Function to determine the current step index based on page state
   const getCurrentStepIndex = () => {
-    if (currentPageState === "patient_enrolment") {
+    if (currentPageState === "personal_details") {
       return 1; // 1st step
-    } else if (currentPageState === "caregiver_addition") {
+    } else if (currentPageState === "caregiver_details") {
       return 2; // 2nd step
-    } else {
+    }
+    else if (currentPageState === "upload_documents") {
+      return 3; // 2nd step
+    }
+    else if (currentPageState === "authorization") {
+      return 4; // 2nd step
+    }
+     else {
       // Handle any other states that might be added in the future
       // Default to the first step if state is unknown
       return 1;

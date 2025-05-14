@@ -34,7 +34,8 @@ function UploadInvoiceModal() {
             // ModalBody={< RequestCallBackForm />}
             // isScroll = false"
             type="center"
-            isCloseVisible={true}
+            isCloseVisible={false}
+            isBackVisible={true}
         />
     );
 }

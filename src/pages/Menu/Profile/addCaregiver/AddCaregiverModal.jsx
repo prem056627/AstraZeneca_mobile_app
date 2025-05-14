@@ -2,7 +2,6 @@ import React from "react";
 // import Modal from "../../../components/Modal/Modal";
 import { useDispatch, useSelector } from "react-redux";
 
-import CaregiverDetails from "../../../patient-detail-form/step-2/CaregiverDetails";
 import Modal from "../../../../components/Modal/Modal";
 import AddCaregiverForm from "./AddCaregiverForm";
 import { selectIsAddCaregiverFormOpen, setIsAddCaregiverFormOpen } from "../../../../slice/patient-detail-form";

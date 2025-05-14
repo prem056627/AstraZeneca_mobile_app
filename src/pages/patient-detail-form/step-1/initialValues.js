@@ -1,8 +1,6 @@
 import moment from 'moment';
 
 export const getProfileInitialValues = (storedData = {}) => {
-
-  // console.log("storedData",storedData);
   return {
     // Personal Details
     full_name: storedData.full_name || "",
@@ -11,38 +9,20 @@ export const getProfileInitialValues = (storedData = {}) => {
     mobile_number: "",
     email: storedData.email || "",
     nationality: storedData.nationality || "",
+    primary_language: storedData.primary_language || "",
+    secondary_language: storedData.secondary_language || "",
+    alternative_mobile: storedData.alternative_mobile || "",
 
     // Address
     address: {
-      // Permanent Address
-      
-      
-      permanent: {
-        line1: storedData.address?.permanent?.line1 || "",
-        line2: storedData.address?.permanent?.line2 || "",
-        city: storedData.address?.permanent?.city || "",
-        state: storedData.address?.permanent?.state || "",
-        pincode: storedData.address?.permanent?.pincode || "",
-        address_proof_type:storedData.address?.permanent?.address_proof_type||"",
-        address_proof_number:storedData.address?.permanent?.address_proof_number||""
-    
-      },
-      // Current Residential Address
-      current: {
-        same_as_permanent: storedData?.address?.current.line1 || false,
-        line1: storedData?.address?.current.line1 || "",
-        line2: storedData?.address?.current.line2 || "",
-        city: storedData?.address?.current.city || "",
-        state: storedData?.address?.current.state || "",
-        pincode: storedData?.address?.current.pincode || "",
-         address_proof_type:storedData.address?.permanent?.address_proof_type||"",
-        address_proof_number:storedData.address?.permanent?.address_proof_number||""
-      },
+      line1: storedData.address?.line1 || "",
+      city: storedData.address?.city || "",
+      state: storedData.address?.state || "",
+      pincode: storedData.address?.pincode || "",
     },
-    
+
     // ID Details
-    id_card_type: storedData.id_card_type || "",
-    id_number: storedData.id_number || "",
+    employer_reimbursement: storedData.employer_reimbursement || "",
   };
 };
 
@@ -54,29 +34,16 @@ export const fieldGroups = {
     'date_of_birth',
     'mobile_number',
     'email',
-    'nationality'
+    'nationality',
+    'primary_language'
   ],
-  addressProof: [
-    'address.permanent.addressline1',
-    'address.permanent.addressline2',
-    'address.permanent.city',
-    'address.permanent.state',
-    'address.permanent.pincode',
-    'address.permanent.address_proof_type',
-    'address.permanent.address_proof_number'
+  addressDetails: [
+    'address.line1',
+    'address.city',
+    'address.state',
+    'address.pincode'
   ],
-  currentResidentialAddress: [
-    'address.current.same_as_permanent',
-    'address.current.addressline1',
-    'address.current.addressline2',
-    'address.current.city',
-    'address.current.state',
-    'address.current.pincode',
-     'address.current.address_proof_type',
-    'address.current.address_proof_number'
-  ],
-  idDetails: [
-    'id_card_type',
-    'id_number'
+  reimbursementDetails: [
+    'employer_reimbursement'
   ]
 };

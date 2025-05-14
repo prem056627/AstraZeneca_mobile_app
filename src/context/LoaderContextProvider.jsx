@@ -1,8 +1,8 @@
 import { createContext, useEffect, useMemo, useState, useContext } from 'react';
-import { cardio } from 'ldrs';
+import { trefoil } from 'ldrs';
 
-// Register the cardio component
-cardio.register();
+// Register the trefoil component
+trefoil.register();
 
 // Create the LoaderContext
 export const LoaderContext = createContext();
@@ -28,12 +28,14 @@ export default function LoaderContextProvider({ children }) {
       {children}
       {isLoading && (
         <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-50 z-[1051]">
-          <l-cardio
-            size="70"
+          <l-trefoil
+            size="50"
             stroke="4"
-            speed="2" 
-            color="#0101C8"
-          ></l-cardio>
+            stroke-length="0.15"
+            bg-opacity="0.1"
+            speed="1.4"
+            color="#7C084B"
+          ></l-trefoil>
         </div>
       )}
     </LoaderContext.Provider>

@@ -1,7 +1,7 @@
 import React from "react";
-import { ReactComponent as Relax } from "../../../../pfizer-app/src/assets/images/physicalVerify/relax.svg";
-import { ReactComponent as Pap } from "../../../../pfizer-app/src/assets/images/physicalVerify/pap.svg";
-import { ReactComponent as Tick } from "../../../../pfizer-app/src/assets/images/physicalVerify/tick.svg";
+import { ReactComponent as Relax } from "../../../src/assets/images/physicalVerify/relax.svg";
+import { ReactComponent as Pap } from "../../../src/assets/images/physicalVerify/pap.svg";
+import { ReactComponent as Tick } from "../../../src/assets/images/physicalVerify/tick.svg";
 
 function CustomToast({ date, time, closeToast }) {
   return (

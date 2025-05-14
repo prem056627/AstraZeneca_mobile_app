@@ -5,7 +5,7 @@ import MultiFileUpload from '../../components/Form/MultiFileUpload';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectSelectedProgram, setIsInitalDataLoad, setRequestFocModalOpen, setViewingOrderHistory } from '../../slice/patient-detail-form';
 import { toast } from 'react-toastify';
-import { ReactComponent as Tick } from "../../../../pfizer-app/src/assets/images/physicalVerify/tick_1.svg";
+import { ReactComponent as Tick } from "../../../src/assets/images/physicalVerify/tick_1.svg";
 import useApi from '../../hooks/useApi';
 import { transformToFormData } from '../../utils/forms';
 import { LoaderContext } from '../../context/LoaderContextProvider';
@@ -188,43 +188,37 @@ function RequestFOCForm({ setStep, fetchProgramDetails }) {
                 const hasErrors = Object.keys(formik.errors).length > 0 && formik.touched.prescription_files;
 
                 return (
-                    <Form className="complete-hidden-scroll-style flex flex-grow flex-col gap-4 overflow-y-auto">
-                        <div className="px-5">
+                    <Form className="complete-hidden-scroll-style flex flex-grow flex-col gap-4 overflow-y-auto  h-fit mt-10 ">
+                       <div className=" border border-[#ECECEC] rounded-2xl p-4 ">
+                       <div className="flex flex-col gap-4">
+                       <h1 className="text-[20px] font-bold font-open-sans">Upload Prescription</h1>
                         <MultiFileUpload
                         isMultiple={true}
                         formik={formik}
                         id="prescription_files"  // Remove the trailing space
                         name="prescription_files"  // Remove the trailing space
                         label="Prescription *"
-                         description="* - manditory fields"
-                        // description="The file must be in jpg/pdf/png format. Maximum size of the document should be 5MB. You can upload up to 5 files."
+                        description="The file must be in jpg/pdf/png format. Maximum size of the document should be 5MB. You can upload up to 5 files."
                     />
 
-
-                        <p className="text-red-500 text-[12px] italic text-start mb-4 py-4">
-                          The file must be in jpg/pdf/png format.In case of multiple file upload please upload as a single pdf.
-                          Maximum size of the document should be 5MB.
-                        </p>
                          
                         </div>
 
           
     
 
-                        <div className="flex flex-col ">
-                        <div className='  w-full bg-[#F4F4FF] py-2 '>
-            {PoweredByFooter()}
-           </div>
+                        <div className="flex flex-col py-4 pt-6">
                             <button
                                 type="submit"
                                 disabled={!isFileUploaded || hasErrors || formik.isSubmitting || isLoading}
-                                className={`flex  w-full items-center justify-center rounded-b-[8px] bg-primary py-6 font-lato text-[18px] font-bold leading-[20px] text-white transition-opacity duration-300 ${
+                                className={`flex  w-full items-center justify-center rounded-[8px] bg-primary py-4 font-lato text-[18px] font-bold leading-[20px] text-white transition-opacity duration-300 ${
                                     isFileUploaded && !hasErrors && !formik.isSubmitting && !isLoading ? 'opacity-100' : 'opacity-30'
                                 }`}
                             >
                                 <span>{isLoading ? 'Submitting...' : 'Submit'}</span>
                             </button>
                         </div>
+                       </div>
                     </Form>
                 );
             }}

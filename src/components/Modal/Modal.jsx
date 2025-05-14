@@ -147,7 +147,7 @@ function Modal({
 						</div>
 
 						<div className=' fixed bottom-0  left-0 w-full bg-[#F4F4FF] py-2 '>
-		{PoweredByFooter()}
+		{/* {PoweredByFooter()} */}
 	   </div>
 
 					</div>

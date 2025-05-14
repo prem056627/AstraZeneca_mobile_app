@@ -13,7 +13,7 @@ import {
 import useApi from "../../../../hooks/useApi";
 // import { combinedValidationSchema } from "../../../patient-detail-form/step-1/validationSchemas";
 
-import CaregiverDetails from "../../../patient-detail-form/step-2/CaregiverDetails";
+// import CaregiverDetails from "../../x../patient-detail-form/step-2/CaregiverDetails";
 import { transformToPatientDetailsFormData } from "../../../../utils/forms";
 import useLocalStorage from "../../../../hooks/useLocalstorage";
 import { getAddCaregiverDetailsInitialValues } from "./intialValues";
@@ -75,10 +75,10 @@ const AddCaregiverForm = () => {
       // Log values to debug
       // console.log("Form Values:", values);
 
-      setFormData({
-        ...formData,
-        CaregiverDetails: values,
-      });
+      // setFormData({
+      //   ...formData,
+      //   // CaregiverDetails: values,
+      // });
       
       const result = await makeApiCall(values);
       
@@ -96,7 +96,7 @@ const AddCaregiverForm = () => {
  
 
   return (
-    <div className="w-full pb-24">
+    <div className="w-full pb-20">
       <div className="mx-auto w-full rounded-2xl ">
         <Formik
           initialValues={initialValues}

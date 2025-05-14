@@ -4,7 +4,7 @@ import MultiFileUpload from '../../components/Form/MultiFileUpload';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectInitializeData, selectSelectedEnrollProgram, setDocUploadStatus, setProgramEnrollmentConsent, setProgramEnrollmentSuccess, setProgramStatus, setSchemaShown } from '../../slice/patient-detail-form';
 import { toast } from 'react-toastify';
-import { ReactComponent as Tick } from "../../../../pfizer-app/src/assets/images/physicalVerify/tick_1.svg";
+import { ReactComponent as Tick } from "../../../src/assets/images/physicalVerify/tick_1.svg";
 import { transformToFormData } from '../../utils/forms';
 import useApi from '../../hooks/useApi';
 import { LoaderContext } from '../../context/LoaderContextProvider';

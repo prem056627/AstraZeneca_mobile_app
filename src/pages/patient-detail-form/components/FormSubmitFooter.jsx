@@ -12,6 +12,8 @@ import {
   setCurrentPageState,
   selectIsCaregiverSkipVisible,
   setIsCaregiverSkipVisible,
+  resetCompletedSections,
+  resetSubFormCurrentStep,
 //   setCurrentPageState,
 } from '../../../slice/patient-detail-form';
 import useApi from '../../../hooks/useApi';
@@ -28,38 +30,38 @@ function FormSubmitFooter({ formik ,onSkip}) {
 //   console.log("currentPageStatecurrentPageState!",currentPageState)
   
   const handleSubmit = () => {
-    if (currentPageState === 'caregiver_addition') {
-      // This is the final page, submit the form
-      // Add your submission logic here
-    } else {
-      // Move to the next page based on current page state
-    //   const nextPageState = 'caregiver_addition';
-    //   setCurrentPageState(nextPageState);
-    }
+
+    dispatch(resetSubFormCurrentStep());
   };
 
 
-
-    
+  const onsubmitReverse = async () => {
+    switch (currentPageState) {
+      case "caregiver_details":
+        // dispatch(setIsCaregiverSkipVisible(false));
+        dispatch(setCurrentPageState("personal_details"));
+        break;
+      case "upload_documents":
+        dispatch(setCurrentPageState("caregiver_details"));
+        break;
+      case "authorization":
+        dispatch(setCurrentPageState("upload_documents"));
+        break;
+      case "personal_details":
+      default:
+        // Already at the first step, maybe do nothing or show a warning
+        break;
+    }
+  };
   
-    const onsubmitReverse = async () => {  // Add async here
-      if (currentPageState === 'caregiver_addition') {
-        dispatch(setIsCaregiverSkipVisible(false));
-        // Go back to patient enrollment page
-        dispatch(setCurrentPageState('patient_enrolment'));
-    
-        // const result = await makeApiCall();  // Now correctly awaited
-      }
-    };
-    
 
 
    // Local state to trigger re-render
    const [shouldRender, setShouldRender] = useState(skipVisible);
 
-   useEffect(() => {
-     setShouldRender(skipVisible); // Update state when skipVisible changes
-   }, [skipVisible]);
+  //  useEffect(() => {
+  //    setShouldRender(skipVisible); // Update state when skipVisible changes
+  //  }, [skipVisible]);
 
 
 
@@ -98,42 +100,34 @@ function FormSubmitFooter({ formik ,onSkip}) {
 
   <div className="fixed bottom-0 left-0 z-50 w-full">
 
-   <div className=' bg-[#F4F4FF] py-2'>
-    {PoweredByFooter()}
-   </div>
+   {/* <div className=' bg-[#F4F4FF] py-2'> */}
+    {/* {PoweredByFooter()} */}
+   {/* </div> */}
    
     <div className=" flex justify-center w-full border-t bg-white px-6 py-6">
       <div className="max-w-screen-lg flex w-full justify-between">
         <button
           type="button"
           onClick={onsubmitReverse}
-          disabled={currentPageState === 'patient_enrolment'}
-          className={`h-12 w-12 rounded-full bg-primary-light p-4 text-red-500 ${
-            currentPageState === 'patient_enrolment' ? 'opacity-30' : 'opacity-100'
+          disabled={currentPageState === 'personal_details'}
+          className={`h-12 w-12 rounded-full bg-[#D3C3CC] p-4 text-red-500 ${
+            currentPageState === 'personal_details' ? 'opacity-30' : 'opacity-100'
           }`}
         >
           <FormSubmitLeftArrow className='text-white' />
         </button>
-        {skipVisible || currentPageState === 'patient_enrolment' ? (
-  <button
+        
+        <button
     type="submit"
     disabled={!(formik.isValid && formik.dirty)}
     className={`flex h-12 items-center justify-center gap-2 rounded-md bg-primary p-4 text-white font-open-sans font-semibold tracking-wide 
-      ${!(formik.isValid && formik.dirty) ? 'opacity-30' : 'opacity-100'} disabled:opacity-75`}
+       ${!(formik.isValid && formik.dirty) ? 'opacity-30' : 'opacity-100'}`}
+      // ${!(formik.isValid && formik.dirty) ? 'opacity-30' : 'opacity-100'}
     onClick={handleSubmit}
   >
-    {currentPageState === 'caregiver_addition' ? <span>Submit</span> : <span>Save & Next</span>}
+    {currentPageState === 'authorization' ? <span>Submit</span> : <span>Save & Next</span>}
     <RightArrow />
   </button>
-) : (
-  <button
-    type="button"
-    className="flex h-12 items-center justify-center gap-2 rounded-md bg-primary p-4 text-white font-open-sans font-semibold tracking-wide"
-    onClick={onSkip}
-  >
-    Skip Caregiver
-  </button>
-)}
 
       </div>
     </div>

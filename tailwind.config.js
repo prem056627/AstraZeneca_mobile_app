@@ -70,7 +70,7 @@ module.exports = {
 				3: 3,
 			},
 			colors: {
-				primary: '#0101C8',
+				primary: '#7C084B',
 				'primary-light': '#CCCCF4',
 				// primary-disable: '#0101C8',
 				secondary: '#0190FF', // TODO: Change per needed
