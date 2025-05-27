@@ -17,6 +17,7 @@ import {
 //   setCurrentPageState,
 } from '../../../slice/patient-detail-form';
 import useApi from '../../../hooks/useApi';
+import { current } from '@reduxjs/toolkit';
 
 
 
@@ -30,8 +31,13 @@ function FormSubmitFooter({ formik ,onSkip}) {
 //   console.log("currentPageStatecurrentPageState!",currentPageState)
   
   const handleSubmit = () => {
+    if(currentPageState === "authorization"){
+      // dispatch(setIsCaregiverSkipVisible(false));  
 
-    dispatch(resetSubFormCurrentStep());
+     dispatch(setCurrentPageState("program_enrolment"));
+    }else{
+  
+    dispatch(resetSubFormCurrentStep());}
   };
 
 

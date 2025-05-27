@@ -18,7 +18,7 @@ let initialData = {
     // personal_details
     // program_enrolment_done
     // current_step: "caregiver_details",
-    current_step: "program_enrolment",
+    current_step: "personal_details",
     // patient_status: "Inactive",
     patient_status: "Active",
     duplicate: false,

@@ -15,7 +15,6 @@
     "@testing-library/user-event": "^13.2.1",
     "browser-image-compression": "^2.0.0",
     "date-fns": "^4.1.0",
-    "env-cmd": "^10.1.0",
     "formik": "^2.2.9",
     "global": "^4.4.0",
     "i18next": "^24.2.2",
@@ -51,14 +50,15 @@
     "web-vitals": "^2.1.0",
     "yup": "^0.32.11"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "node generate-build.js && env-cmd -f .env npm run build:react && npm run build:bundle",
-    "build:react": "react-scripts build",
-    "build:bundle": "webpack --config webpack.config.js",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
+"scripts": {
+  "start": "react-scripts start",
+  "build": "npm run build:react && npm run build:bundle",
+  "build:react": "react-scripts build",
+  "build:bundle": "webpack --config webpack.config.js",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject"
+}
+,
   "eslintConfig": {
     "extends": [
       "react-app",
