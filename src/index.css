@@ -477,3 +477,19 @@ min-height: 52px !important;
   font-size: 14px;
 
 }
+
+
+
+
+/* Prevent zoom on input focus */
+input, 
+textarea, 
+select {
+  font-size: 16px !important;
+}
+
+/* Or target specific classes */
+.form-control,
+.input-field {
+  font-size: 16px !important;
+}
